@@ -405,7 +405,7 @@ class ImprovedROIExtractor:
         return mask.astype(bool)
 
 
-def load_rois_with_fallback(dataset_name, split, imgs, roi_base_dir='../TopoSSL'):
+def load_rois_with_fallback(dataset_name, split, imgs, roi_base_dir='data/rois'):
     """
     Try to load SAM ROIs, fall back to traditional if not found
 
@@ -475,7 +475,7 @@ def load_rois_with_fallback(dataset_name, split, imgs, roi_base_dir='../TopoSSL'
     return rois, False
 
 
-def load_dataset_with_rois(dataset_name, split, roi_base_dir='../TopoSSL',
+def load_dataset_with_rois(dataset_name, split, roi_base_dir='data/rois',
                            data_dir=None, seed=42):
     """
     Load dataset with ROIs (SAM if available, traditional fallback)
@@ -1487,7 +1487,7 @@ def main():
     # Dataset
     parser.add_argument('--dataset', type=str, required=True,
                         choices=['kvasir', 'pathmnist', 'octmnist', 'organsmnist', 'isic2019', 'imagenet100'])
-    parser.add_argument('--roi_dir', type=str, default='../TopoSSL')
+    parser.add_argument('--roi_dir', type=str, default='data/rois')
 
     # Training mode
     parser.add_argument('--mode', type=str, default='Supervised_CE',

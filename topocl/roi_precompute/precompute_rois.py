@@ -186,9 +186,9 @@ def precompute_rois(dataset_name, splits=['train', 'val', 'test'],
     
     # Default paths
     if trained_checkpoint is None:
-        trained_checkpoint = f'../SAM_SPICE_medmnist_isic2019_kvasir/SAM_SPICE_checkpoints/stage1/{dataset_lower}/stage1_sam_simclr_{dataset_lower}_224.pth'
+        trained_checkpoint = f'checkpoints/sam_spice/stage1/{dataset_lower}/stage1_sam_simclr_{dataset_lower}_224.pth'
     if base_sam is None:
-        base_sam = '../SAM_SPICE_medmnist_isic2019_kvasir/sam_vit_h_4b8939.pth'
+        base_sam = 'weights/sam_vit_h_4b8939.pth'
     
     # Check if already cached
     cache_file = os.path.join(output_dir, f'{dataset_lower}_rois.npz')

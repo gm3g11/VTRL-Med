@@ -43,7 +43,9 @@ for dataset in "${datasets[@]}"; do
         --lr_head 5e-5 \
         --num_workers 16 \
         --eval_frequency 2 \
+        --sam_checkpoint "$SAM_CHECKPOINT" \
         --checkpoint_dir "$stage1_dir" \
+        --stage2_dir "$stage2_dir" \
         --output_dir "$stage3_dir"
 
     echo "Stage 3 completed for $dataset"

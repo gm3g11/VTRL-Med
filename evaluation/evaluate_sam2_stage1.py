@@ -270,13 +270,13 @@ def evaluate_single_model(args):
     # Determine config and base checkpoint based on model type
     if args.model_type == 'medical_sam2':
         config_name = 'sam2_hiera_t'
-        base_checkpoint = '../topology_contrastive_learning/model_weights/MedSAM2_pretrain.pth'
+        base_checkpoint = 'weights/MedSAM2_pretrain.pth'
     elif args.model_type == 'medsam2':
         config_name = 'sam2_hiera_t'
-        base_checkpoint = '../topology_contrastive_learning/model_weights/MedSAM2_latest.pt'
+        base_checkpoint = 'weights/MedSAM2_latest.pt'
     else:  # sam2
         config_name = 'sam2_hiera_l'
-        base_checkpoint = '../topology_contrastive_learning/model_weights/sam2_hiera_large.pt'
+        base_checkpoint = 'weights/sam2_hiera_large.pt'
     
     # Build Stage 1 checkpoint path
     stage1_checkpoint = os.path.join(

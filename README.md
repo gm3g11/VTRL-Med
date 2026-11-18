@@ -1,13 +1,13 @@
 # VTRL-Med
 
-**SAM + SimCLR topology-aware pseudo-labeling for deep clustering of medical images.**
+Official code for **[VTRL-Med: Progressive Visual Refinement with Topology-Guided Regularization for Medical Image Clustering](https://arxiv.org/abs/2610.32884)**.
 
 VTRL-Med clusters medical images without labels in three stages:
 
 | Stage | Script | What it does |
 |---|---|---|
 | 1 | `scripts/stage1_unified.py` | Adapts the SAM ViT image encoder with SimCLR (NT-Xent loss); only the last `--unfrozen_blocks` transformer blocks are trained. |
-| 2 | `scripts/stage2_unified.py` | Trains multiple clustering heads on Stage 1 features with pseudo-labels and keeps the best head. Supports our method and ablations / baselines (`confidence_only`, `prototype_only`, `fixmatch`, `flexmatch`, `spice`, `swav`, `wo_stage1`). |
+| 2 | `scripts/stage2_unified.py` | Generates pseudo-labels on Stage 1 features (top-confidence samples per cluster → prototype → nearest samples), trains multiple clustering heads and keeps the best one. Supports our method and ablations / baselines (`confidence_only`, `prototype_only`, `fixmatch`, `flexmatch`, `spice`, `swav`, `wo_stage1`). |
 | 3 | `scripts/stage3_unified.py` | Jointly fine-tunes the visual backbone and a topology branch (persistent homology computed on the fly with `cripser`), with a phase-scheduled topology loss weight. `stage3_unified_notopo.py` is the visual-only variant. |
 
 Supported datasets: the 2D [MedMNIST](https://medmnist.com/) datasets (e.g. PathMNIST, DermaMNIST, BloodMNIST, OCTMNIST, ...), Kvasir, and ISIC 2019.
@@ -64,7 +64,12 @@ weights/
 
 - **MedMNIST** datasets are downloaded automatically by the `medmnist` package.
 - **Kvasir** and **ISIC 2019** must be downloaded manually and arranged as above. Both are pooled and re-split 85/15 (train/test) with a fixed seed.
-- **SAM ViT-H** checkpoint: [`sam_vit_h_4b8939.pth`](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth) from the [Segment Anything](https://github.com/facebookresearch/segment-anything) repository.
+- **SAM ViT-H** checkpoint from the [Segment Anything](https://github.com/facebookresearch/segment-anything) repository:
+
+```bash
+mkdir -p weights
+wget -P weights https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+```
 
 ## Usage
 
@@ -119,11 +124,11 @@ python evaluation/evaluate_stage2_clustering.py --help
 If you find this code useful, please cite:
 
 ```bibtex
-@article{vtrlmed,
-  title   = {TODO},
-  author  = {TODO},
-  journal = {TODO},
-  year    = {TODO}
+@article{meng2026vtrlmed,
+  title   = {VTRL-Med: Progressive Visual Refinement with Topology-Guided Regularization for Medical Image Clustering},
+  author  = {Meng, Guangyu and Gu, Pengfei and Liang, Peixian and Lalor, John P. and Chambers, Erin Wolf and Chen, Danny Z.},
+  journal = {arXiv preprint arXiv:2610.32884},
+  year    = {2026}
 }
 ```
 

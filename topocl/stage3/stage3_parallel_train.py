@@ -372,7 +372,7 @@ def main():
     # Dataset
     parser.add_argument('--dataset', type=str, required=True,
                        choices=['kvasir', 'pathmnist', 'octmnist', 'organsmnist', 'isic2019'])
-    parser.add_argument('--roi_dir', type=str, default='../TopoSSL',
+    parser.add_argument('--roi_dir', type=str, default='data/rois',
                        help='Directory containing ROI files (will fallback if not found)')
     
     # Training
