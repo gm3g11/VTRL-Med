@@ -1,0 +1,21 @@
+# Install PyTorch matching your CUDA version first: https://pytorch.org/get-started/locally/
+# Tested with: python 3.8, torch 2.4.1, CUDA 12.1
+torch>=2.0
+torchvision>=0.15
+
+numpy
+scipy
+scikit-learn
+scikit-image
+pandas
+Pillow
+opencv-python
+tqdm
+matplotlib
+seaborn
+umap-learn
+
+medmnist>=3.0
+cripser
+
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git

@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environments
+.env
+*.env
+!med_clustering.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# SGE output
+*.o[0-9]*
+
+# Large files (symlinked)
+weights/
+checkpoints/
+data/
+tools/
+
+# Experiment outputs
+results/
+ablation_study/
+archive/
+*.pth
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db
